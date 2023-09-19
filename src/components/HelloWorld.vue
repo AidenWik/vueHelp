@@ -1,21 +1,83 @@
+
+
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-  </div>
-  <div class="card">
-    <img alt="real estate logo" src="./housepic.jpg">
-    <div class="card-content"> 
-      <h2>Two Pod Realty</h2> 
-      <p id="description">Real Estate Company Focused on delivering the best properties in the State College Area</p> 
-      <button class="details-button" id="detailsBtn">Details</button>
-    </div> 
-  </div> 
+  <head>
+   <title>Homework IST 256 Sheetz</title>
+ </head>
+ <body>
+  <div class="card-container">
+   <div class="card-wrapper">
+   <div class="Sheetz">
+     <label class="sheetzLbl">Sheetz</label>
+   </div>
+   
+ <div class="directions">
+   <label id="directionsLbl">Directions</label>
+ </div>
+   
+ <div class="Favorites">
+   <label id="Favoriteslbl">Favorites</label>
+   </div>
+   
+ <div class="btn-wrapper">
+   <button>Hotdog</button>
+   <button>Fries</button>
+   <button>Shake</button>
+ </div>
+ 
+ <div class="images">
+   <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Hot_dog_with_mustard.png" alt="A beautiful landscape">
+ 
+   <img src="https://media.istockphoto.com/id/496094410/photo/potatoes-fries-in-a-red-carton-box-isolated-fast-food.jpg?s=612x612&w=0&k=20&c=d7WnO6AW0C3A-xMSBa3Yb5rmSNelyY-jmxhW2efZq2Q=">
+ 
+   <img 
+ src="https://gofericecream.com/wp-content/uploads/2021/06/shake-.png"> 
+   
+ </div>
+ 
+  <div class="detailsBtn">
+         <button class="toggle-details">Details</button>
+     </div>
+      
+   
+ <div class="paragraphs">
+   <p1>$1.99 <br>A food consisting of a grilled or steamed sausage served in the slit of a partially sliced bun.</p1>
+   <p2>$0.99 <br>Side dish or snack typically made from deep-fried potatoes that have been cut into various shapes, especially thin strips.</p2>
+   <p3>$5.99 <br> A sweet beverage made by blending milk, ice cream, and flavorings or sweeteners.</p3>
+   </div>
+ 
   
-  <button id="btn">Duplicator</button>
-  <button id="colorBtn">BGColorChanger</button>
-  <button id="Headingbtn">HeadingChanger</button>
-  <button id="dltbtn">DeleteCard</button>
-</template>
+   </div>
+ 
+   </div>
+   
+   <div class ="duper">
+    <button id="duper">Button for duplication</button>
+     </div>   
+   
+   
+    
+   
+   <div class ="background">
+     <button id="background">Change Background</button>
+   </div>
+    
+   
+   <div class ="title">
+     <button id="title">Change Title</button>
+   </div>
+   
+ 
+   
+     <div class="delete">
+         <button id="deleteLastCard">Delete Last Card</button>
+     </div>
+     
+    
+ 
+ 
+   </body>
+ </template>
 
 <script>
 export default {
@@ -24,120 +86,222 @@ export default {
     msg: String
   },
   mounted() {
-    document.querySelector('#btn').addEventListener('click', () => {
-      const clone = document.querySelector('.card').cloneNode(true); // Clone the whole card
-      document.body.appendChild(clone);
-    });
-    
-    var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
-    var letters = ["A", "B", "C", "D", "E", "F"];
-    
-    function randomColor() {
-      var color = "";
-      for (var i = 0; i < 3; i++) {
-        var index = Math.floor(Math.random() * (numbers.length + letters.length));
-        color += (index < numbers.length) ? numbers[index] : letters[index - numbers.length];
-      }
-      return color;
-    }
-    
-    document.querySelector('#colorBtn').addEventListener('click', () => {
-      const card = document.querySelector('.card');
-      // Change background color
-      card.style.backgroundColor = '#' + randomColor();
-    });
-    
-    // HEADING CHANGER
-    document.querySelector('#Headingbtn').addEventListener('click', () => {
-      const title = document.querySelector('h2');
-      title.innerText = "Super Pod 2 Realty";
-    });
-    
-    // Card delete
-    document.querySelector('#dltbtn').addEventListener('click', () => {
-      const cards = document.querySelectorAll('.card');
-      // Check if there are cards to delete
-      if (cards.length > 1) {
-        const lastCard = cards[cards.length - 1];
-        lastCard.parentNode.removeChild(lastCard);
-      }
-    });
-    
-    var original = document.querySelector('#description').innerText;
-    
-    document.querySelector('#detailsBtn').addEventListener('click', () => {
-      const description = document.querySelector('#description');
-      // Toggle the visibility of the description
-      if (description.innerText === 'none' || description.innerText === '') {
-        description.innerText = original; // Show the description
-      } else {
-        description.innerText = ''; // Hide the description
-      }
-    });
+    import { createApp } from 'vue'
+import './style.css'
+import App from './App.vue'
+
+createApp(App).mount('#app')
+
+
+// JavaScript to toggle visibility of the paragraph descriptions
+const toggleDetailsButtons = document.querySelectorAll('.toggle-details');
+const paragraphsSections = document.querySelectorAll('.paragraphs');
+
+toggleDetailsButtons.forEach((button, index) => {
+  button.addEventListener('click', () => {
+    paragraphsSections[index].classList.toggle('hidden');
+  });
+});
+
+// JavaScript for cloning cards
+document.querySelector('#duper').addEventListener('click', (e) => {
+  const cardContainer = document.querySelector('.card-container');
+  const cardWrapperClone = document.querySelector('.card-wrapper').cloneNode(true);
+
+  // Add unique classes to the cloned elements
+  cardWrapperClone.classList.add('cloned-card');
+  cardWrapperClone.querySelector('.toggle-details').textContent = 'Details';
+
+  cardContainer.appendChild(cardWrapperClone);
+
+  // Set up event listeners for the cloned button
+  const clonedToggleDetailsButton = cardWrapperClone.querySelector('.toggle-details');
+  const clonedParagraphsSection = cardWrapperClone.querySelector('.paragraphs');
+
+  clonedToggleDetailsButton.addEventListener('click', () => {
+    clonedParagraphsSection.classList.toggle('hidden');
+  });
+});
+document.querySelector('#deleteLastCard').addEventListener('click', (e) => {
+// Code for deleting the last card
+const cardContainer = document.querySelector('.card-container');
+const cardWrappers = document.querySelectorAll('.card-wrapper');
+
+// Check if there's at least one card to delete
+if (cardWrappers.length > 1) {
+    const lastCard = cardWrappers[cardWrappers.length - 1];
+    cardContainer.removeChild(lastCard);
+}
+});
+
+document.querySelector('.card-wrapper').addEventListener('mouseover', (e) => {
+const cardWrapper = document.querySelector('.card-wrapper');
+cardWrapper.classList.toggle('alt-bg2');
+});
+
+document.querySelector('.card-wrapper').addEventListener('mouseleave', (e) => {
+const cardWrapper = document.querySelector('.card-wrapper');
+cardWrapper.classList.toggle('alt-bg2');
+});
+
+document.querySelector('#title').addEventListener('click', (e) => {
+const headings = document.querySelectorAll('.sheetzLbl'); // Corrected class name
+headings.forEach((heading) => {
+heading.textContent = "something else";
+});
+});
+
+
+
+document.querySelector('#background').addEventListener('click', (e) => {
+const cardWrappers = document.querySelectorAll('.card-wrapper');
+/* loop to change each existing iteration*/
+cardWrappers.forEach((cardWrapper) => {
+  cardWrapper.classList.toggle('alt-bg');
+});
+});
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-.card {
-  max-width: 400px;
-  margin: 0 auto;
-  border: 1px solid #0C0B0B;
-  background-color: #0C0B0B;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
+
+.card-wrapper {
+  display:inline-block;
+  max-width: 400px; /* Set the maximum width of the card */
+  width: 100%; /* Make the card responsive within the parent container */
+  padding: 20px; /* Add padding for spacing */
+  border: 1px solid #ccc;
   text-align: center;
+  position: relative;
+  margin-bottom: 200px;
 }
 
-.card img {
-  max-width: 100%;
-  height: auto;
+.card-wrapper img {
+  width: 100%; /* Set the width of the image to 100% to fit the card width */
+  max-height: 300px; /* Set a fixed maximum height for the image */
+  object-fit: cover; /* Maintain aspect ratio and cover the entire image area */
 }
 
-.card-content {
-  flex: 1;
+/* Media query to scale the card on screens smaller than 500px */
+@media (max-width: 500px) {
+  .card-wrapper {
+      max-width: 100%; /* Expand the card to the full width of the viewport */
+      padding: 10px; /* Adjust padding for smaller screens if needed */
+  }
 }
 
-/* Style for the Title label */
-h2 {
-  font-size: 24px;
-  margin: -10px 0;
-  /* Background color and border */
-  background-color: #F8471B;
-  /* Background color */
-  color: #fff;
-  /* Text color on the background */
+.Sheetz label{ 
+
+display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh; 
+  margin: 0; 
+font-size: 50px;
+color: white;
+background: red;
+}
+.directions label{
+display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh; 
+  margin: 0;
+color: Black;
+}
+.Favorites label{
+display: flex;
+  justify-content: center;
+  align-items: center; 
+  margin: 0;
+font-size: 30px;
+color: white;
+background: black;
+}
+
+.btn-wrapper {
+display: flex;
+  justify-content: center;
+  align-items: center; 
+margin: 24px auto;
+}
+.btn-wrapper button {
+font-size: 40px;
+color: blue;
+background-color: white;
+}
+.btn-wrapper button:hover {
+color: white;
+background-color: blue;
+}
+.images {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.images img {
+height: auto; 
+max-width: 30%; 
+}
+
+.paragraphs {
+display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+.paragraphs p1 {
+/* Styles for the first paragraph */
+padding-right: 20px;
+padding-bottom: 20px;
+}
+.paragraphs p2 {
+padding-right: 20px;
+padding-bottom: 20px;
+}
+.paragraphs p3 {
+padding-right: 20px;
+padding-bottom: 20px;
+}
+.card-wrapper .detailsBtn button {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  font-size: 14px;
   padding: 8px 16px;
-  border-radius: 4px;
+  background-color: blue;
+  cursor: pointer;
+  color: white;
 }
 
-p {
-  font-size: 16px;
-  margin: 8px 0;
-  color: #fff;
+.detailsBtn button:hover {
+  color: blue;
+  background-color: white;
 }
 
-a.details-button {
-  background-color: #EA5F0A;
-  color: #fff;
-  padding: 8px 16px;
-  text-decoration: none;
-  border-radius: 4px;
+.duper button{
+color: white;
+background-color: blue;
 }
-</style>
+.duper button:focus  {
+color: blue;
+  background-color: white;
+}
+/* Show the details button between 500px and 800px */
+@media (max-width: 800px) {
+  .detailsBtn button {
+      display: none;
+  }
+}
+
+.card-wrapper.alt-bg {
+  background-color: lightblue;
+}
+.card-wrapper.alt-bg2 {
+  background-color: lightgreen;
+}
+.hidden {
+          display: none;
+      }
+      </style>

@@ -1,138 +1,65 @@
-.card-wrapper {
-  display:inline-block;
-  max-width: 400px; /* Set the maximum width of the card */
-  width: 100%; /* Make the card responsive within the parent container */
-  padding: 20px; /* Add padding for spacing */
-  border: 1px solid #ccc;
+/* Base styles for the card */
+.card {
+  max-width: 400px;
+  margin: 0 auto;
+  border: 1px solid #0C0B0B;
+  background-Color: #0C0B0B;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
   text-align: center;
-  position: relative;
-  margin-bottom: 200px;
+  
 }
 
-.card-wrapper img {
-  width: 100%; /* Set the width of the image to 100% to fit the card width */
-  max-height: 300px; /* Set a fixed maximum height for the image */
-  object-fit: cover; /* Maintain aspect ratio and cover the entire image area */
+.card img {
+    max-width: 100%;
+    height: auto;
 }
 
-/* Media query to scale the card on screens smaller than 500px */
-@media (max-width: 500px) {
-  .card-wrapper {
-      max-width: 100%; /* Expand the card to the full width of the viewport */
-      padding: 10px; /* Adjust padding for smaller screens if needed */
-  }
+.card-content {
+  flex: 1;
 }
 
-.Sheetz label{ 
-
-display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 10vh; 
-  margin: 0; 
-font-size: 50px;
-color: white;
-background: red;
-}
-.directions label{
-display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 10vh; 
-  margin: 0;
-color: Black;
-}
-.Favorites label{
-display: flex;
-  justify-content: center;
-  align-items: center; 
-  margin: 0;
-font-size: 30px;
-color: white;
-background: black;
-}
-
-.btn-wrapper {
-display: flex;
-  justify-content: center;
-  align-items: center; 
-margin: 24px auto;
-}
-.btn-wrapper button {
-font-size: 40px;
-color: blue;
-background-color: white;
-}
-.btn-wrapper button:hover {
-color: white;
-background-color: blue;
-}
-.images {
-display: flex;
-justify-content: center;
-align-items: center;
-}
-.images img {
-height: auto; 
-max-width: 30%; 
-}
-
-.paragraphs {
-display: flex;
-  justify-content: center;
-  align-items: center; 
-}
-.paragraphs p1 {
-/* Styles for the first paragraph */
-padding-right: 20px;
-padding-bottom: 20px;
-}
-.paragraphs p2 {
-padding-right: 20px;
-padding-bottom: 20px;
-}
-.paragraphs p3 {
-padding-right: 20px;
-padding-bottom: 20px;
-}
-.card-wrapper .detailsBtn button {
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
-  font-size: 14px;
+/* Style for the Title label */
+h2 {
+  font-size: 24px;
+  margin: -10px 0;
+  /*background color and border */
+  background-color: #F8471B; /* background color */
+  color: #fff; /* Text color on the background */
   padding: 8px 16px;
-  background-color: blue;
-  cursor: pointer;
-  color: white;
+  border-radius: 4px;
 }
 
-.detailsBtn button:hover {
-  color: blue;
-  background-color: white;
+p {
+  font-size: 16px;
+  margin: 8px 0;
+  color: #fff
+}
+a.details-button {
+    background-color: #EA5F0A;
+    color: #fff;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 4px;
 }
 
-.duper button{
-color: white;
-background-color: blue;
-}
-.duper button:focus  {
-color: blue;
-  background-color: white;
-}
-/* Show the details button between 500px and 800px */
-@media (max-width: 800px) {
-  .detailsBtn button {
-      display: none;
+/* Media query for displaying the button on small tablets (800px) and larger phones (500px) */
+@media screen and (max-width: 800px) {
+  a.details-button {
+    display: inline-block;
   }
 }
 
-.card-wrapper.alt-bg {
-  background-color: lightblue;
+/* Media query for scaling the card on screens smaller than 500px */
+@media screen and (max-width: 500px) {
+  .card {
+    max-width: 300px;
+  }
+  h2 {
+    font-size: 20px;
+  }
+  p {
+    font-size: 14px;
+  }
 }
-.card-wrapper.alt-bg2 {
-  background-color: lightgreen;
-}
-.hidden {
-          display: none;
-      }
-    
