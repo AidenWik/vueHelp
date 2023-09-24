@@ -119,17 +119,17 @@ if (cardWrappers.length > 1) {
 }
 });
 
-document.querySelector('.card-wrapper').addEventListener('mouseover', (e) => {
+document.querySelector('.card-wrapper').addEventListener('mouseover', () => {
 const cardWrapper = document.querySelector('.card-wrapper');
 cardWrapper.classList.toggle('alt-bg2');
 });
 
-document.querySelector('.card-wrapper').addEventListener('mouseleave', (e) => {
+document.querySelector('.card-wrapper').addEventListener('mouseleave', () => {
 const cardWrapper = document.querySelector('.card-wrapper');
 cardWrapper.classList.toggle('alt-bg2');
 });
 
-document.querySelector('#title').addEventListener('click', (e) => {
+document.querySelector('#title').addEventListener('click', () => {
 const headings = document.querySelectorAll('.sheetzLbl'); // Corrected class name
 headings.forEach((heading) => {
 heading.textContent = "something else";
@@ -138,7 +138,7 @@ heading.textContent = "something else";
 
 
 
-document.querySelector('#background').addEventListener('click', (e) => {
+document.querySelector('#background').addEventListener('click', () => {
 const cardWrappers = document.querySelectorAll('.card-wrapper');
 /* loop to change each existing iteration*/
 cardWrappers.forEach((cardWrapper) => {
