@@ -167,7 +167,7 @@ cardWrappers.forEach((cardWrapper) => {
       max-width: 100%; /* Expand the card to the full width of the viewport */
       padding: 10px; /* Adjust padding for smaller screens if needed */
   }
-}
+};
 
 .Sheetz label{ 
 
