@@ -69,64 +69,73 @@
 </template>
 
 <script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  },
-  mounted() {
-    document.querySelector('#btn').addEventListener('click', () => {
-      const clone = document.querySelector('.card').cloneNode(true); // Clone the whole card
-      document.body.appendChild(clone);
-    });
-    
-    var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
-    var letters = ["A", "B", "C", "D", "E", "F"];
-    
-    function randomColor() {
-      var color = "";
-      for (var i = 0; i < 3; i++) {
-        var index = Math.floor(Math.random() * (numbers.length + letters.length));
-        color += (index < numbers.length) ? numbers[index] : letters[index - numbers.length];
-      }
-      return color;
-    }
-    
-    document.querySelector('#colorBtn').addEventListener('click', () => {
-      const card = document.querySelector('.card');
-      // Change background color
-      card.style.backgroundColor = '#' + randomColor();
-    });
-    
-    // HEADING CHANGER
-    document.querySelector('#Headingbtn').addEventListener('click', () => {
-      const title = document.querySelector('h2');
-      title.innerText = "Super Pod 2 Realty";
-    });
-    
-    // Card delete
-    document.querySelector('#dltbtn').addEventListener('click', () => {
-      const cards = document.querySelectorAll('.card');
-      // Check if there are cards to delete
-      if (cards.length > 1) {
-        const lastCard = cards[cards.length - 1];
-        lastCard.parentNode.removeChild(lastCard);
-      }
-    });
-    
-    var original = document.querySelector('#description').innerText;
-    
-    document.querySelector('#detailsBtn').addEventListener('click', () => {
-      const description = document.querySelector('#description');
-      // Toggle the visibility of the description
-      if (description.innerText === 'none' || description.innerText === '') {
-        description.innerText = original; // Show the description
-      } else {
-        description.innerText = ''; // Hide the description
-      }
-    });
-  }
+  // JavaScript to toggle visibility of the paragraph descriptions
+const toggleDetailsButtons = document.querySelectorAll('.toggle-details');
+const paragraphsSections = document.querySelectorAll('.paragraphs');
+
+toggleDetailsButtons.forEach((button, index) => {
+  button.addEventListener('click', () => {
+    paragraphsSections[index].classList.toggle('hidden');
+  });
+});
+
+// JavaScript for cloning cards
+document.querySelector('#duper').addEventListener('click', (e) => {
+  const cardContainer = document.querySelector('.card-container');
+  const cardWrapperClone = document.querySelector('.card-wrapper').cloneNode(true);
+
+  // Add unique classes to the cloned elements
+  cardWrapperClone.classList.add('cloned-card');
+  cardWrapperClone.querySelector('.toggle-details').textContent = 'Details';
+
+  cardContainer.appendChild(cardWrapperClone);
+
+  // Set up event listeners for the cloned button
+  const clonedToggleDetailsButton = cardWrapperClone.querySelector('.toggle-details');
+  const clonedParagraphsSection = cardWrapperClone.querySelector('.paragraphs');
+
+  clonedToggleDetailsButton.addEventListener('click', () => {
+    clonedParagraphsSection.classList.toggle('hidden');
+  });
+});
+document.querySelector('#deleteLastCard').addEventListener('click', (e) => {
+// Code for deleting the last card
+const cardContainer = document.querySelector('.card-container');
+const cardWrappers = document.querySelectorAll('.card-wrapper');
+
+// Check if there's at least one card to delete
+if (cardWrappers.length > 1) {
+    const lastCard = cardWrappers[cardWrappers.length - 1];
+    cardContainer.removeChild(lastCard);
 }
+});
+
+document.querySelector('.card-wrapper').addEventListener('mouseover', (e) => {
+const cardWrapper = document.querySelector('.card-wrapper');
+cardWrapper.classList.toggle('alt-bg2');
+});
+
+document.querySelector('.card-wrapper').addEventListener('mouseleave', (e) => {
+const cardWrapper = document.querySelector('.card-wrapper');
+cardWrapper.classList.toggle('alt-bg2');
+});
+
+document.querySelector('#title').addEventListener('click', (e) => {
+const headings = document.querySelectorAll('.sheetzLbl'); // Corrected class name
+headings.forEach((heading) => {
+heading.textContent = "something else";
+});
+});
+
+
+
+document.querySelector('#background').addEventListener('click', (e) => {
+const cardWrappers = document.querySelectorAll('.card-wrapper');
+/* loop to change each existing iteration*/
+cardWrappers.forEach((cardWrapper) => {
+  cardWrapper.classList.toggle('alt-bg');
+});
+});
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
