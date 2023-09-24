@@ -70,6 +70,10 @@
 
 <script>
   export default {
+  name: 'HelloWorld',
+  props: {
+    msg: String
+  },
   mounted() {
     // Code that runs after the component is mounted goes here
     
@@ -114,7 +118,7 @@
         cardContainer.removeChild(lastCard);
       }
     });
-    /* eslint-disable */
+
     // Rest of your JavaScript code...
   }
 };
