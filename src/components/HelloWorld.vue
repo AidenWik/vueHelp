@@ -1,11 +1,5 @@
-
-
 <template>
-  <head>
-   <title>Homework IST 256 Sheetz</title>
- </head>
- <body>
-  <div class="card-container">
+ <div class="card-container">
    <div class="card-wrapper">
    <div class="Sheetz">
      <label class="sheetzLbl">Sheetz</label>
@@ -41,9 +35,9 @@
       
    
  <div class="paragraphs">
-   <p1>$1.99 <br>A food consisting of a grilled or steamed sausage served in the slit of a partially sliced bun.</p1>
-   <p2>$0.99 <br>Side dish or snack typically made from deep-fried potatoes that have been cut into various shapes, especially thin strips.</p2>
-   <p3>$5.99 <br> A sweet beverage made by blending milk, ice cream, and flavorings or sweeteners.</p3>
+   <p>$1.99 <br>A food consisting of a grilled or steamed sausage served in the slit of a partially sliced bun.</p>
+   <p>$0.99 <br>Side dish or snack typically made from deep-fried potatoes that have been cut into various shapes, especially thin strips.</p>
+   <p>$5.99 <br> A sweet beverage made by blending milk, ice cream, and flavorings or sweeteners.</p>
    </div>
  
   
@@ -72,12 +66,198 @@
      <div class="delete">
          <button id="deleteLastCard">Delete Last Card</button>
      </div>
-     
+</template>
+
+<script>
+export default {
+  name: 'HelloWorld',
+  props: {
+    msg: String
+  },
+  mounted() {
+    document.querySelector('#btn').addEventListener('click', () => {
+      const clone = document.querySelector('.card').cloneNode(true); // Clone the whole card
+      document.body.appendChild(clone);
+    });
     
- 
- 
-   </body>
- </template>
+    var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    var letters = ["A", "B", "C", "D", "E", "F"];
+    
+    function randomColor() {
+      var color = "";
+      for (var i = 0; i < 3; i++) {
+        var index = Math.floor(Math.random() * (numbers.length + letters.length));
+        color += (index < numbers.length) ? numbers[index] : letters[index - numbers.length];
+      }
+      return color;
+    }
+    
+    document.querySelector('#colorBtn').addEventListener('click', () => {
+      const card = document.querySelector('.card');
+      // Change background color
+      card.style.backgroundColor = '#' + randomColor();
+    });
+    
+    // HEADING CHANGER
+    document.querySelector('#Headingbtn').addEventListener('click', () => {
+      const title = document.querySelector('h2');
+      title.innerText = "Super Pod 2 Realty";
+    });
+    
+    // Card delete
+    document.querySelector('#dltbtn').addEventListener('click', () => {
+      const cards = document.querySelectorAll('.card');
+      // Check if there are cards to delete
+      if (cards.length > 1) {
+        const lastCard = cards[cards.length - 1];
+        lastCard.parentNode.removeChild(lastCard);
+      }
+    });
+    
+    var original = document.querySelector('#description').innerText;
+    
+    document.querySelector('#detailsBtn').addEventListener('click', () => {
+      const description = document.querySelector('#description');
+      // Toggle the visibility of the description
+      if (description.innerText === 'none' || description.innerText === '') {
+        description.innerText = original; // Show the description
+      } else {
+        description.innerText = ''; // Hide the description
+      }
+    });
+  }
+}
+</script>
 
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+.card-wrapper {
+  display:inline-block;
+  max-width: 400px; /* Set the maximum width of the card */
+  width: 100%; /* Make the card responsive within the parent container */
+  padding: 20px; /* Add padding for spacing */
+  border: 1px solid #ccc;
+  text-align: center;
+  position: relative;
+  margin-bottom: 200px;
+}
 
+.card-wrapper img {
+  width: 100%; /* Set the width of the image to 100% to fit the card width */
+  max-height: 300px; /* Set a fixed maximum height for the image */
+  object-fit: cover; /* Maintain aspect ratio and cover the entire image area */
+}
 
+/* Media query to scale the card on screens smaller than 500px */
+@media (max-width: 500px) {
+  .card-wrapper {
+      max-width: 100%; /* Expand the card to the full width of the viewport */
+      padding: 10px; /* Adjust padding for smaller screens if needed */
+  }
+}
+
+.Sheetz label{ 
+
+display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh; 
+  margin: 0; 
+font-size: 50px;
+color: white;
+background: red;
+}
+.directions label{
+display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh; 
+  margin: 0;
+color: Black;
+}
+.Favorites label{
+display: flex;
+  justify-content: center;
+  align-items: center; 
+  margin: 0;
+font-size: 30px;
+color: white;
+background: black;
+}
+
+.btn-wrapper {
+display: flex;
+  justify-content: center;
+  align-items: center; 
+margin: 24px auto;
+}
+.btn-wrapper button {
+font-size: 40px;
+color: blue;
+background-color: white;
+}
+.btn-wrapper button:hover {
+color: white;
+background-color: blue;
+}
+.images {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.images img {
+height: auto; 
+max-width: 30%; 
+}
+
+.paragraphs {
+display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+.paragraphs p {
+/* Styles for the first paragraph */
+padding-right: 20px;
+padding-bottom: 20px;
+}
+.card-wrapper .detailsBtn button {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  font-size: 14px;
+  padding: 8px 16px;
+  background-color: blue;
+  cursor: pointer;
+  color: white;
+}
+
+.detailsBtn button:hover {
+  color: blue;
+  background-color: white;
+}
+
+.duper button{
+color: white;
+background-color: blue;
+}
+.duper button:focus  {
+color: blue;
+  background-color: white;
+}
+/* Show the details button between 500px and 800px */
+@media (max-width: 800px) {
+  .detailsBtn button {
+      display: none;
+  }
+}
+
+.card-wrapper.alt-bg {
+  background-color: lightblue;
+}
+.card-wrapper.alt-bg2 {
+  background-color: lightgreen;
+}
+.hidden {
+          display: none;
+      }
+</style>
