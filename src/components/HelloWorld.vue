@@ -113,13 +113,38 @@
       const cardWrappers = document.querySelectorAll('.card-wrapper');
     
       // Check if there's at least one card to delete
-      if (cardWrappers.length > 1) {
-        const lastCard = cardWrappers[cardWrappers.length - 1];
-        cardContainer.removeChild(lastCard);
-      }
-    });
+if (cardWrappers.length > 1) {
+    const lastCard = cardWrappers[cardWrappers.length - 1];
+    cardContainer.removeChild(lastCard);
+}
+});
 
-    // Rest of your JavaScript code...
+document.querySelector('.card-wrapper').addEventListener('mouseover', (e) => {
+const cardWrapper = document.querySelector('.card-wrapper');
+cardWrapper.classList.toggle('alt-bg2');
+});
+
+document.querySelector('.card-wrapper').addEventListener('mouseleave', (e) => {
+const cardWrapper = document.querySelector('.card-wrapper');
+cardWrapper.classList.toggle('alt-bg2');
+});
+
+document.querySelector('#title').addEventListener('click', (e) => {
+const headings = document.querySelectorAll('.sheetzLbl'); // Corrected class name
+headings.forEach((heading) => {
+heading.textContent = "something else";
+});
+});
+
+
+
+document.querySelector('#background').addEventListener('click', (e) => {
+const cardWrappers = document.querySelectorAll('.card-wrapper');
+/* loop to change each existing iteration*/
+cardWrappers.forEach((cardWrapper) => {
+  cardWrapper.classList.toggle('alt-bg');
+});
+});
   }
 };
 </script>
