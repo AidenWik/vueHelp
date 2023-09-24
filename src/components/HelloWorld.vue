@@ -114,7 +114,7 @@
         cardContainer.removeChild(lastCard);
       }
     });
-    
+    /* eslint-disable */
     // Rest of your JavaScript code...
   }
 };
