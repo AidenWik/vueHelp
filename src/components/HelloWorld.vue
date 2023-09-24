@@ -69,6 +69,9 @@
 </template>
 
 <script>
+  mounted() {
+    // Code that runs after the component is mounted goes here
+  
   // JavaScript to toggle visibility of the paragraph descriptions
 const toggleDetailsButtons = document.querySelectorAll('.toggle-details');
 const paragraphsSections = document.querySelectorAll('.paragraphs');
@@ -136,6 +139,7 @@ cardWrappers.forEach((cardWrapper) => {
   cardWrapper.classList.toggle('alt-bg');
 });
 });
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
