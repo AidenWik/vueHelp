@@ -88,7 +88,7 @@
     });
     
     // JavaScript for cloning cards
-    document.querySelector('#duper').addEventListener('click', (e) => {
+    document.querySelector('#duper').addEventListener('click', () => {
       const cardContainer = document.querySelector('.card-container');
       const cardWrapperClone = document.querySelector('.card-wrapper').cloneNode(true);
     
@@ -107,7 +107,7 @@
       });
     });
     
-    document.querySelector('#deleteLastCard').addEventListener('click', (e) => {
+    document.querySelector('#deleteLastCard').addEventListener('click', () => {
       // Code for deleting the last card
       const cardContainer = document.querySelector('.card-container');
       const cardWrappers = document.querySelectorAll('.card-wrapper');
